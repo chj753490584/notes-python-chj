@@ -11,7 +11,7 @@
 + `print k` and `print str(k)` and `print 'string'`
 
 ## Code
-···
+```
 ##########Data Structure
 # numbers
 a = 1
@@ -234,4 +234,4 @@ plt.hold(True)
 plt.plot(X, Z)
 plt.show()
 # cdf and pdf
-···
+```
