@@ -1,3 +1,9 @@
+#Assignment 1
+pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
+i.e. the each month volatility of the csi 300.
+
+
+```python
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
@@ -68,4 +74,5 @@ for yi in year:
             continue
 
 pd.DataFrame(v).to_csv('F:\CUHK\\rollingSig.csv')
+```
 
