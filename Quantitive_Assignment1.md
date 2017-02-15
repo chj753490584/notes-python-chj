@@ -1,14 +1,28 @@
 #Assignment 1
-> pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
+> Project Requirment:pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
 > i.e. the each month volatility of the csi 300.
 
 ----
 ##部分笔记
 **1、dy.shift（）**
 
-**2、plt.hist()**
+**2、直方图绘制**
+```python
+y = np.array(csi.Tencent)
+yGRet = y[1:]/y[:-1]
+yRet = np.log(yGRet)
+plt.hist(yRet, normed=True, bins=100)
+```
 
-**3、plot(distance, norm.pdf(distance,mu,sig))**
+
+**3、绘制相对应的参数估计正态分布**
+```python
+mu = np.average(yRet)
+sig = np.std(yRet)
+distance = np.linspace(min(yRet),max(yRet))
+plot(distance, norm.pdf(distance,mu,sig))
+```
+
 
 **4、高斯分布的和密度估计**
 ```python
