@@ -1,7 +1,57 @@
 #Assignment 1
-pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
-i.e. the each month volatility of the csi 300.
+> pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
+> i.e. the each month volatility of the csi 300.
+----
+##部分笔记
+**1、dy.shift（）**
 
+**2、plt.hist()**
+
+**3、plot(distance, norm.pdf(distance,mu,sig))**
+
+**4、高斯分布的和密度估计**
+```python
+kernel = gaussian_kde(yRet)
+plt.plot(distance,kernel(distance), label='Kernel density')
+plt.legend(loc="upper right")
+```
+
+**5、t分布**
+```python
+plot(distanceN, t.pdf(distanceN, df=4), label='t-dist, df=4')
+```
+
+**6、拉普拉斯分布**
+```python
+plt.plot(distanceN, t.pdf(distanceN, df=3), label='t-dist, df=3')
+```
+
+**7、np.unique**
+统计函数：unique（）保留数组中不同的值，返回两个参数。
+```python
+year = np.unique(dy.index.year)
+month = np.unique(dy.index.month)
+```
+
+**8、字典 { } 的神奇作用**
+字典可以先给空，在根据键赋值，都可以是空的，所以字典是更加灵活的容器
+```python
+dict = {}
+dict['one'] = "This is one"
+dict[2] = "This is two"
+print pd.Series(dict)
+```
+```python
+dict = {}
+dict['one'] = ["This is one"]
+dict[2] = ["This is two"]
+print pd.DataFrame(dict)
+```
+
+**9、定位某一个未知的位置**
+```python
+temp = dyRet.ix[(dyRet.index.year == yi) & (dyRet.index.month == mi)]
+```
 
 ```python
 from matplotlib import pyplot as plt
