@@ -608,9 +608,7 @@ print grp_mean
 
  
 
-openPrice  highestPrice  lowestPrice  closePrice  turnoverVol
-
-secID                                                                     
+openPrice    highestPrice   lowestPrice   closePrice  turnoverVol  secID                                                                     
 
 000001.XSHE    14.6550       14.9840      14.4330     14.6650    154710615
 
