@@ -1,6 +1,7 @@
 #Assignment 1
 > pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
 > i.e. the each month volatility of the csi 300.
+
 ----
 ##部分笔记
 **1、dy.shift（）**
@@ -27,6 +28,7 @@ plt.plot(distanceN, t.pdf(distanceN, df=3), label='t-dist, df=3')
 ```
 
 **7、np.unique**
+
 统计函数：unique（）保留数组中不同的值，返回两个参数。
 ```python
 year = np.unique(dy.index.year)
@@ -34,18 +36,19 @@ month = np.unique(dy.index.month)
 ```
 
 **8、字典 { } 的神奇作用**
+
 字典可以先给空，在根据键赋值，都可以是空的，所以字典是更加灵活的容器
 ```python
 dict = {}
 dict['one'] = "This is one"
 dict[2] = "This is two"
-print pd.Series(dict)
+print pd.Series(dict)#只能是Series,无法变成DataFrame，暂时还没懂
 ```
 ```python
 dict = {}
 dict['one'] = ["This is one"]
 dict[2] = ["This is two"]
-print pd.DataFrame(dict)
+print pd.DataFrame(dict)#这里可以是DataFrame
 ```
 
 **9、定位某一个未知的位置**
@@ -53,6 +56,8 @@ print pd.DataFrame(dict)
 temp = dyRet.ix[(dyRet.index.year == yi) & (dyRet.index.month == mi)]
 ```
 
+
+##完整程序
 ```python
 from matplotlib import pyplot as plt
 import pandas as pd
