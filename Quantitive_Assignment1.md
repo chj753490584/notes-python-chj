@@ -1,5 +1,5 @@
 #Assignment 1
-> Project Requirment:pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
+> Project Requirments: pls produce exactly the same chart as in the csi slide in Lecture 1 and the rollingSig.csv given to you,
 > i.e. the each month volatility of the csi 300.
 
 ----
