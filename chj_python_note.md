@@ -663,3 +663,26 @@ dat = df[df['secID'] == '600028.XSHG'].set_index('tradeDate')['closePrice']
 dat.plot(title="Close Price of SINOPEC (600028) during Jan, 2015")
 
 ```
+---
+
+##三、numpy知识点
+###3.1 数组
+**1、 数组的创建**
+- NumPy中的基本对象是同类型的多维数组（homogeneous multidimensional array），这和C++中的数组是一致的，例如字符型和数值型就不可共存于同一个数组中。
+```python
+a = np.arange(20)
+print a
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+```
+- 通过函数"reshape"，我们可以重新构造一下这个数组，例如，我们可以构造一个4x5的二维数组，其中"reshape"的参数表示各维度的大小，且按各维顺序排列（两维时就是按行排列，这和R中按列是不同的）：
+```python
+a = a.reshape(4, 5)
+print a
+
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]]
+ ```
+ - 可以调用array的函数进一步查看a的相关属性："ndim"查看维度；"shape"查看各维度的大小；"size"查看全部的元素个数，等于各维度大小的乘积；
+ - 
