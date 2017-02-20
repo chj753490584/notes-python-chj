@@ -817,3 +817,30 @@ print a[loc[0][0], loc[1][0]]
 11
 ```
 **3、 数组的操作**
+- 矩阵转置`a = np.transpose(a)`
+- 矩阵求逆
+```python
+import numpy.linalg as nlg
+a = np.random.rand(2,2)
+a = np.mat(a)#转换为矩阵
+ia = nlg.inv(a)#逆
+print "inverse of a:"
+print ia
+```
+- 求特征值和特征向量
+```python
+a = np.random.rand(3,3)
+eig_value, eig_vector = nlg.eig(a)
+print "eigen value:"
+print eig_value
+print "eigen vector:"
+print eig_vector
+
+eigen value:
+[ 1.35760609  0.43205379 -0.53470662]
+eigen vector:
+[[-0.76595379 -0.88231952 -0.07390831]
+ [-0.55170557  0.21659887 -0.74213622]
+ [-0.33005418  0.41784829  0.66616169]]
+ ```
+ 
