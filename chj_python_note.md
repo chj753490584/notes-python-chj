@@ -2,7 +2,7 @@
 
   [1.1 list、元组 和字典](###1.1 list、元组 和字典)
   
-[二、pandas知识点](##二、pandas知识点)
+[二、pandas知识点](##https://github.com/chj753490584/notes-python-chj/blob/master/chj_python_note.md#二pandas知识点)
 #chj-python学习笔记
 ##一、基本知识
 ###1.1 list、元组 和字典
