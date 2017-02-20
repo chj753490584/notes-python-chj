@@ -674,6 +674,19 @@ a = np.arange(20)
 print a
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 ```
+- 简单创建
+```python
+raw = [0,1,2,3,4]
+a = np.array(raw)
+a
+array([0, 1, 2, 3, 4])
+
+raw = [[0,1,2,3,4], [5,6,7,8,9]]
+b = np.array(raw)
+b
+array([[0, 1, 2, 3, 4],
+       [5, 6, 7, 8, 9]])
+```
 - 通过函数"reshape"，我们可以重新构造一下这个数组，例如，我们可以构造一个4x5的二维数组，其中"reshape"的参数表示各维度的大小，且按各维顺序排列（两维时就是按行排列，这和R中按列是不同的）：
 ```python
 a = a.reshape(4, 5)
@@ -685,4 +698,122 @@ print a
  [15 16 17 18 19]]
  ```
  - 可以调用array的函数进一步查看a的相关属性："ndim"查看维度；"shape"查看各维度的大小；"size"查看全部的元素个数，等于各维度大小的乘积；
- - 
+ - 一些特殊的数组有特别定制的命令生成，如4x5的全零矩阵：
+```python
+d = (4, 5)
+np.zeros(d)
+
+array([[ 0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.]])
+```
+- 默认生成的类型是浮点型，可以通过指定类型改为整型：`np.ones(d, dtype=int)`
+- [0, 1)区间的随机数数组：
+```python
+print np.random.rand(5)
+print np.random.rand(2,4)
+[[ 0.17571282  0.98510461  0.94864387  0.50078988]
+ [ 0.09457965  0.70251658  0.07134875  0.43780173]]
+```
+**2、 数组的操作**
+- 开根号求指数
+```python
+print a
+print np.exp(a)
+print np.sqrt(a)
+print np.square(a)
+print np.power(a, 3)
+```
+- 二维数组的最大最小值,计算全部元素的和、按行求和、按列求和
+```python
+a = np.arange(20).reshape(4,5)
+print "a:"
+print a
+print "sum of all elements in a: " + str(a.sum())
+print "maximum element in a: " + str(a.max())
+print "minimum element in a: " + str(a.min())
+print "maximum element in each row of a: " + str(a.max(axis=1))
+print "minimum element in each column of a: " + str(a.min(axis=0))
+```
+- **矩阵和二位数组**：除了数组，NumPy同时提供了矩阵对象（matrix）。矩阵对象和数组的主要有两点差别：一是矩阵是二维的，而数组的可以是任意正整数维；二是矩阵的'x'操作符进行的是矩阵乘法，乘号左侧的矩阵列和乘号右侧的矩阵行要相等，而在数组中'x'操作符进行的是每一元素的对应相乘，乘号两侧的数组每一维大小需要一致。数组可以通过asmatrix或者mat转换为矩阵，或者直接生成也可以：
+```python
+a = np.arange(20).reshape(4, 5)
+a = np.asmatrix(a)
+
+b = np.matrix('1.0 2.0; 3.0 4.0')
+```
+- range函数还可以通过arange(起始，终止，步长)的方式调用生成等差数列，注意含头不含尾。
+```python
+b = np.arange(2, 45, 3).reshape(5, 3)
+b = np.mat(b)
+print b
+```
+- arange指定的是步长，如果想指定生成的一维数组的长度怎么办？好办，"linspace"就可以做到：
+```python
+np.linspace(0, 2, 9)
+
+array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ,  1.25,  1.5 ,  1.75,  2.  ])
+```
+**2、 数组的元素访问**
+- 数组和矩阵元素的访问可通过下标进行，以下均以二维数组（或矩阵）为例：
+```python
+a = np.array([[3.2, 1.5], [2.5, 4]])
+print a[0][1]
+print a[0, 1]
+
+1.5
+1.5
+```
+- 可以通过下标访问来修改数组元素的值：
+```python
+b = a
+a[0][1] = 2.0
+a:
+[[ 3.2  2. ]
+ [ 2.5  4. ]]
+b:
+[[ 3.2  2. ]
+ [ 2.5  4. ]]
+```
+现在问题来了，明明改的是a[0][1]，怎么连b[0][1]也跟着变了？这个陷阱在Python编程中很容易碰上，其原因在于**Python不是真正将a复制一份给b，而是将b指到了a对应数据的内存地址上。**想要真正的复制一份a给b，可以使用copy：
+```python
+a = np.array([[3.2, 1.5], [2.5, 4]])
+b = a.copy()
+a[0][1] = 2.0
+a:
+[[ 3.2  2. ]
+ [ 2.5  4. ]]
+b:
+[[ 3.2  1.5]
+ [ 2.5  4. ]]
+ ```
+ - 利用':'可以访问到某一维的全部数据，例如取矩阵中的指定列：
+ ```python
+ a = np.arange(20).reshape(4, 5)
+print "a:"
+print a
+print "the 2nd and 4th column of a:"
+print a[:,[1,3]]
+```
+- 取出满足某些条件的元素,例子是将第一列大于5的元素（10和15）对应的第三列元素（12和17）取出来：
+```python
+a[:, 2][a[:, 0] > 5]
+array([12, 17])
+```
+可见这里`a[:, 2][a[:, 0] > 5]`就是`a[:,取列][:,取行]`
+- 使用where函数查找特定值在数组中的位置：
+```python
+a:
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]]
+loc = numpy.where(a==11)
+print loc
+print a[loc[0][0], loc[1][0]]
+
+(array([2]), array([1]))
+11
+```
+**3、 数组的操作**
