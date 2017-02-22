@@ -1,4 +1,4 @@
-# Elementry notes of python
+# Quantitative Class Material
 > This profile is from my Quantitative Portfolio Analysis class in CUHK. 
 > I think it contains quite a lot basic information for me to learn how to use python to do stochastic inference.
 
