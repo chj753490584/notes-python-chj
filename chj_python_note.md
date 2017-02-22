@@ -755,7 +755,7 @@ np.linspace(0, 2, 9)
 
 array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ,  1.25,  1.5 ,  1.75,  2.  ])
 ```
-**2、 数组的元素访问**
+**3、 数组的元素访问**
 - 数组和矩阵元素的访问可通过下标进行，以下均以二维数组（或矩阵）为例：
 ```python
 a = np.array([[3.2, 1.5], [2.5, 4]])
@@ -816,7 +816,7 @@ print a[loc[0][0], loc[1][0]]
 (array([2]), array([1]))
 11
 ```
-**3、 数组的操作**
+**4、 数组的操作**
 - 矩阵转置`a = np.transpose(a)`
 - 矩阵求逆
 ```python
@@ -844,3 +844,51 @@ eigen vector:
  [-0.33005418  0.41784829  0.66616169]]
  ```
  
+- 用`column_stack`按列拼接向量成一个矩阵
+```python
+a = np.array((1,2,3))
+b = np.array((2,3,4))
+print np.column_stack((a,b))
+
+[[1 2]
+ [2 3]
+ [3 4]]
+```
+- 将结果拼接成一个矩阵是十分有用的，可以通过`vstack`和`hstack`完成：
+```python
+a = np.random.rand(2,2)
+b = np.random.rand(2,2)
+c = np.hstack([a,b])
+d = np.vstack([a,b])
+print "horizontal stacking a and b:"
+print c
+print "vertical stacking a and b:"
+print d
+
+horizontal stacking a and b:
+[[ 0.6738195   0.4944045   0.28058267  0.0967197 ]
+ [ 0.25702675  0.15422012  0.55191041  0.04694485]]
+vertical stacking a and b:
+[[ 0.6738195   0.4944045 ]
+ [ 0.25702675  0.15422012]
+ [ 0.28058267  0.0967197 ]
+ [ 0.55191041  0.04694485]]
+```
+
+**5、缺省值**
+- NumPy提供nan作为缺失值的记录，通过isnan判定。
+```python
+a = np.random.rand(2,2)
+a[0, 1] = np.nan
+print np.isnan(a)
+
+[[False  True]
+ [False False]]
+```
+- nan_to_num可用来将nan替换成0
+```python
+print np.nan_to_num(a)
+
+[[ 0.58144238  0.]
+ [ 0.26789784 0.48664306]]
+```
