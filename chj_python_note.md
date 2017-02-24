@@ -728,7 +728,8 @@ dat = df[df['secID'] == '600028.XSHG'].set_index('tradeDate')['closePrice']
 dat.plot(title="Close Price of SINOPEC (600028) during Jan, 2015")
 
 ```
----
+----
+
 
 ##三、numpy知识点
 ###3.1 数组
@@ -960,3 +961,45 @@ print np.nan_to_num(a)
 [[ 0.58144238  0.]
  [ 0.26789784 0.48664306]]
 ```
+----
+
+##三、SciPy知识点
+###3.1 生成随机数
+####1、相关模块
+- 我们使用的是SciPy里面的统计和优化部分
+```python
+import numpy as np
+import scipy.stats as stats
+import scipy.optimize as opt
+```
+
+####2、随机数种类
+- 生成n个随机数可用`rv_continuous.rvs(size=n)`（连续型的随机分布，如均匀分布uniform、正态分布norm、贝塔分布beta等）或`rv_discrete.rvs(size=n)`（离散型的随机分布，如伯努利分布bernoulli、几何分布geom、泊松分布poisson等）
+- 例：生成10个[0, 1]区间上的随机数和10个服从参数a=4，b=2的贝塔分布随机数：
+```python
+rv_unif = stats.uniform.rvs(size=10)
+print rv_unif
+rv_beta = stats.beta.rvs(size=10, a=4, b=2)
+print rv_beta
+```
+- 设定某一个具体的分布的对象，我们可以做如下的定义，让beta直接指代具体参数a=4和b=2的贝塔分布。为让结果具有可比性
+```python
+np.random.seed(seed=2015)
+rv_beta = stats.beta.rvs(size=10, a=4, b=2)
+print "method 1:"
+print rv_beta
+
+np.random.seed(seed=2015)
+beta = stats.beta(a=4, b=2)
+print "method 2:"
+print beta.rvs(size=10)
+
+method 1:
+[ 0.43857338  0.9411551   0.75116671  0.92002864  0.62030521  0.56585548
+  0.41843548  0.5953096   0.88983036  0.94675351]
+method 2:
+[ 0.43857338  0.9411551   0.75116671  0.92002864  0.62030521  0.56585548
+  0.41843548  0.5953096   0.88983036  0.94675351]
+invalid syntax (line 2)
+```
+####3、假设检验
