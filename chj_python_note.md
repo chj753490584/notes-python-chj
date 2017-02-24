@@ -731,8 +731,8 @@ dat.plot(title="Close Price of SINOPEC (600028) during Jan, 2015")
 ----
 
 
-##三、numpy知识点
-###3.1 数组
+##四、numpy知识点
+###4.1 数组
 **1、 数组的创建**
 - NumPy中的基本对象是同类型的多维数组（homogeneous multidimensional array），这和C++中的数组是一致的，例如字符型和数值型就不可共存于同一个数组中。
 ```python
