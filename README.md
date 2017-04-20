@@ -10,3 +10,4 @@ Appendix
 
 >- [Quantitive Class Assignment 1](https://github.com/chj753490584/notes-python-chj/blob/wewe/Quantitive_Assignment1.md)
 >- [Quantitive Class Material](https://github.com/chj753490584/notes-python-chj/blob/wewe/Quantative_class_material.md)
+>- [Quantitive Portfolio Project](https://github.com/chj753490584/notes-python-chj/blob/wewe/Quantitative%20Portfolio%20Project.py)
